@@ -6,6 +6,7 @@
 
 #include "LGFX_ST7789.h"
 
+#include "ui.h"
 static const char *TAG = "lvgl_gui";
 #define LV_TICK_PERIOD_MS 1
 
@@ -179,6 +180,7 @@ static void gui_task(void *args)
         /* Try to take the semaphore, call lvgl related function on success */
         if (pdTRUE == xSemaphoreTake(xGuiSemaphore, portMAX_DELAY)) {
             lv_task_handler();
+            ui_tick();
             //lv_timer_handler_run_in_period(5); /* run lv_timer_handler() every 5ms */
             xSemaphoreGive(xGuiSemaphore);
         }

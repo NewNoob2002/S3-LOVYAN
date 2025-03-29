@@ -2,10 +2,13 @@ set (main_root ${CMAKE_CURRENT_LIST_DIR})
 
 set(COMPONENT_ADD_INCLUDEDIRS
     ${main_root}/include
+    ${main_root}/ui
 )
 file(GLOB SRCS
     ${main_root}/main.cpp
     ${main_root}/src/*.cpp
+    ${main_root}/ui/*.c
+    ${main_root}/ui/*.cpp
 )
 
 set(COMPONENT_SRCS ${SRCS})

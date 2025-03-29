@@ -14,5 +14,5 @@ extern "C" void app_main(void)
         ESP_LOGE(TAG, "LVGL setup failed!!!");
     }
 
-    lv_demo_stress();
+    ui_init();
 }

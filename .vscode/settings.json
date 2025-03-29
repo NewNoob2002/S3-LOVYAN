@@ -70,7 +70,8 @@
         "esp_insights.h": "c",
         "lvgl.h": "c",
         "esp_mac.h": "c",
-        "lv_demo_benchmark.h": "c"
+        "lv_demo_benchmark.h": "c",
+        "ui.h": "c"
     },
     "idf.customExtraVars": {
         "IDF_TARGET": "esp32s3"
