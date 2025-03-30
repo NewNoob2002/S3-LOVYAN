@@ -75,7 +75,7 @@ esp_err_t lv_display_init()
     /* CALIBRATION */
 #endif
 
-    lcd.fillScreen(TFT_BLACK);
+    // lcd.fillScreen(TFT_BLACK);
 
     /* LVGL : Setting up buffer to use for display */
     lv_disp_draw_buf_init(&draw_buf, buf, buf2, screenWidth * 10);
@@ -102,7 +102,8 @@ esp_err_t lv_display_init()
     /* Create and start a periodic timer interrupt to call lv_tick_inc */
     const esp_timer_create_args_t lv_periodic_timer_args = {
         .callback = &lv_tick_task,
-        .name = "periodic_gui"};
+        .name = "periodic_gui"
+        };
     esp_timer_handle_t lv_periodic_timer;
     ESP_ERROR_CHECK(esp_timer_create(&lv_periodic_timer_args, &lv_periodic_timer));
     ESP_ERROR_CHECK(esp_timer_start_periodic(lv_periodic_timer, LV_TICK_PERIOD_MS * 1000));
@@ -175,7 +176,7 @@ static void gui_task(void *args)
 {
     ESP_LOGI(TAG, "Start to run LVGL");
     while (1) {
-        vTaskDelay(pdMS_TO_TICKS(7));
+        vTaskDelay(pdMS_TO_TICKS(10));
 
         /* Try to take the semaphore, call lvgl related function on success */
         if (pdTRUE == xSemaphoreTake(xGuiSemaphore, portMAX_DELAY)) {

@@ -12,6 +12,7 @@
 
 objects_t objects;
 lv_obj_t *tick_value_change_obj;
+uint32_t active_theme_index = 0;
 
 void create_screen_main() {
     lv_obj_t *obj = lv_obj_create(0);
@@ -21,18 +22,19 @@ void create_screen_main() {
     {
         lv_obj_t *parent_obj = obj;
         {
-            lv_obj_t *obj = lv_label_create(parent_obj);
-            lv_obj_set_pos(obj, 118, 78);
-            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
-            lv_label_set_text(obj, "Hello,World");
-        }
-        {
-            lv_obj_t *obj = lv_led_create(parent_obj);
-            objects.obj0 = obj;
-            lv_obj_set_pos(obj, 71, 109);
-            lv_obj_set_size(obj, 178, 63);
-            lv_led_set_color(obj, lv_color_hex(0xff0000ff));
-            lv_led_set_brightness(obj, 255);
+            lv_obj_t *obj = lv_animimg_create(parent_obj);
+            lv_obj_set_pos(obj, 0, 0);
+            lv_obj_set_size(obj, 63, 66);
+            static const lv_img_dsc_t *images[4] = {
+                &img_25_bat,
+                &img_50_bat,
+                &img_75_bat,
+                &img_100_bat,
+            };
+            lv_animimg_set_src(obj, (const void **)images, 4);
+            lv_animimg_set_duration(obj, 1000);
+            lv_animimg_set_repeat_count(obj, LV_ANIM_REPEAT_INFINITE);
+            lv_animimg_start(obj);
         }
     }
     
