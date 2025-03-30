@@ -24,3 +24,12 @@ extern LGFX_ST7789 lcd;
 esp_err_t lv_display_init();
 void lvgl_acquire(void);
 void lvgl_release(void);
+
+void lv_obj_add_anim(
+    lv_obj_t * obj, lv_anim_t * a,
+    lv_anim_exec_xcb_t exec_cb, 
+    int32_t start, int32_t end,    
+    uint16_t time,
+    lv_anim_ready_cb_t ready_cb,
+    lv_anim_path_cb_t path_cb
+);

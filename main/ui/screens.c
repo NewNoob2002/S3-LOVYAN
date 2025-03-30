@@ -23,7 +23,7 @@ void create_screen_main() {
         lv_obj_t *parent_obj = obj;
         {
             lv_obj_t *obj = lv_animimg_create(parent_obj);
-            lv_obj_set_pos(obj, 0, 0);
+            lv_obj_set_pos(obj, 0, 34);
             lv_obj_set_size(obj, 63, 66);
             static const lv_img_dsc_t *images[4] = {
                 &img_25_bat,
@@ -35,6 +35,27 @@ void create_screen_main() {
             lv_animimg_set_duration(obj, 1000);
             lv_animimg_set_repeat_count(obj, LV_ANIM_REPEAT_INFINITE);
             lv_animimg_start(obj);
+        }
+        {
+            // lableTitle
+            lv_obj_t *obj = lv_tabview_create(parent_obj, LV_DIR_TOP, 32);
+            objects.lable_title = obj;
+            lv_obj_set_pos(obj, 0, 1);
+            lv_obj_set_size(obj, 320, 34);
+        }
+        {
+            // lineTitle
+            lv_obj_t *obj = lv_line_create(parent_obj);
+            objects.line_title = obj;
+            lv_obj_set_pos(obj, 0, 34);
+            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
+            static lv_point_t line_points[] = {
+                { 0, 0 },
+                { 320, 0 }
+            };
+            lv_line_set_points(obj, line_points, 2);
+            lv_obj_set_style_line_color(obj, lv_color_hex(0xffe51313), LV_PART_MAIN | LV_STATE_DEFAULT);
+            lv_obj_set_style_shadow_width(obj, 10, LV_PART_MAIN | LV_STATE_DEFAULT);
         }
     }
     
