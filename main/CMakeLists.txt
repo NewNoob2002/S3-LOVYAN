@@ -5,10 +5,11 @@ set(COMPONENT_ADD_INCLUDEDIRS
     ${main_root}/ui
 )
 file(GLOB SRCS
-    ${main_root}/main.cpp
+    ${main_root}/*.cpp
     ${main_root}/src/*.cpp
     ${main_root}/ui/*.c
     ${main_root}/ui/*.cpp
+    ${main_root}/pages/*.cpp
 )
 
 set(COMPONENT_SRCS ${SRCS})

@@ -1,27 +1,14 @@
-#include "esp_log.h"
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
-#include "lv_conf.h"
-#include "lvgl.h"
+#include "displayPrivate.h"
 
-#include "LGFX_ST7789.h"
-
-#include "ui.h"
-static const char *TAG = "lvgl_gui";
-#define LV_TICK_PERIOD_MS 1
-
-#define TFT_WIDTH 320
-#define TFT_HEIGHT 172
-
-static LGFX_ST7789 lcd;
-
+static const char *TAG = "lvgl_port";
 /*** Setup screen resolution for LVGL ***/
 static const uint16_t screenWidth = TFT_WIDTH;
 static const uint16_t screenHeight = TFT_HEIGHT;
 
+#define DISP_BUF_SIZE        (TFT_WIDTH * TFT_HEIGHT / 2)
 static lv_disp_draw_buf_t draw_buf;
-static lv_color_t buf[screenWidth * 10];
-static lv_color_t buf2[screenWidth * 10];
+static lv_color_t buf[DISP_BUF_SIZE];
+static lv_color_t buf2[DISP_BUF_SIZE];
 
 static lv_disp_t *disp;
 static lv_theme_t *theme_current;
@@ -48,8 +35,7 @@ esp_err_t lv_display_init()
 {
     // Setting display to landscape
     // if (lcd.width() < lcd.height()) lcd.setRotation(lcd.getRotation() ^ 2);
-
-    lcd.setBrightness(128);
+    
     lcd.setColorDepth(16);
     lcd.setRotation(1);
 #ifdef RTOUCH

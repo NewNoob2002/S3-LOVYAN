@@ -1,4 +1,5 @@
 #pragma once
+#include <LovyanGFX.hpp>
 
 class LGFX_ST7789 : public lgfx::LGFX_Device
 {
