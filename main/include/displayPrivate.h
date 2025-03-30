@@ -11,8 +11,16 @@
 
 #define LV_TICK_PERIOD_MS 1
 
+#define Rotation 1
+
+#if Rotation 
 #define TFT_WIDTH 320
 #define TFT_HEIGHT 172
+#else
+#define TFT_WIDTH 172
+#define TFT_HEIGHT 320
+#endif
+
 
 extern LGFX_ST7789 lcd;
 

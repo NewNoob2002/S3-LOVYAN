@@ -37,7 +37,7 @@ esp_err_t lv_display_init()
     // if (lcd.width() < lcd.height()) lcd.setRotation(lcd.getRotation() ^ 2);
     
     lcd.setColorDepth(16);
-    lcd.setRotation(1);
+    lcd.setRotation(Rotation);
 #ifdef RTOUCH
     /* RESISTIVE TOUCH CALIBRATION */
     // Calibrates when touch is available. (Optional)
@@ -167,7 +167,7 @@ static void gui_task(void *args)
         /* Try to take the semaphore, call lvgl related function on success */
         if (pdTRUE == xSemaphoreTake(xGuiSemaphore, portMAX_DELAY)) {
             lv_task_handler();
-            ui_tick();
+            // ui_tick();
             //lv_timer_handler_run_in_period(5); /* run lv_timer_handler() every 5ms */
             xSemaphoreGive(xGuiSemaphore);
         }

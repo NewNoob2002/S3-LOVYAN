@@ -39,14 +39,14 @@ void create_screen_main() {
             lv_animimg_start(obj);
         }
         {
-            // lableTitle
+            // lable_title
             lv_obj_t *obj = lv_tabview_create(parent_obj, LV_DIR_TOP, 32);
             objects.lable_title = obj;
             lv_obj_set_pos(obj, 0, 1);
             lv_obj_set_size(obj, 320, 34);
         }
         {
-            // lineTitle
+            // line_title
             lv_obj_t *obj = lv_line_create(parent_obj);
             objects.line_title = obj;
             lv_obj_set_pos(obj, 0, 34);
@@ -67,11 +67,24 @@ void create_screen_main() {
 void tick_screen_main() {
 }
 
+void create_screen_page2() {
+    lv_obj_t *obj = lv_obj_create(0);
+    objects.page2 = obj;
+    lv_obj_set_pos(obj, 0, 0);
+    lv_obj_set_size(obj, 320, 172);
+    
+    tick_screen_page2();
+}
+
+void tick_screen_page2() {
+}
+
 
 
 typedef void (*tick_screen_func_t)();
 tick_screen_func_t tick_screen_funcs[] = {
     tick_screen_main,
+    tick_screen_page2,
 };
 void tick_screen(int screen_index) {
     tick_screen_funcs[screen_index]();
@@ -86,4 +99,5 @@ void create_screens() {
     lv_disp_set_theme(dispp, theme);
     
     create_screen_main();
+    create_screen_page2();
 }
