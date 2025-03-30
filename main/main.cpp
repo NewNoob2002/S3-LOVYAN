@@ -15,5 +15,5 @@ extern "C" void app_main(void)
 
     ui_init();
 
-    lcd.setBrightness(127);
+    lcd.setBrightness(254);
 }

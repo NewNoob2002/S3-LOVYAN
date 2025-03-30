@@ -22,7 +22,9 @@ void create_screen_main() {
     {
         lv_obj_t *parent_obj = obj;
         {
+            // battery_anim
             lv_obj_t *obj = lv_animimg_create(parent_obj);
+            objects.battery_anim = obj;
             lv_obj_set_pos(obj, 0, 34);
             lv_obj_set_size(obj, 63, 66);
             static const lv_img_dsc_t *images[4] = {
@@ -54,7 +56,7 @@ void create_screen_main() {
                 { 320, 0 }
             };
             lv_line_set_points(obj, line_points, 2);
-            lv_obj_set_style_line_color(obj, lv_color_hex(0xffe51313), LV_PART_MAIN | LV_STATE_DEFAULT);
+            lv_obj_set_style_line_color(obj, lv_color_hex(0xff61e508), LV_PART_MAIN | LV_STATE_DEFAULT);
             lv_obj_set_style_shadow_width(obj, 10, LV_PART_MAIN | LV_STATE_DEFAULT);
         }
     }

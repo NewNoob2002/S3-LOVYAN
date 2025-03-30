@@ -17,5 +17,5 @@ void Backlight_SetGradual(uint16_t target, uint16_t time)
         NULL, &a,
         (lv_anim_exec_xcb_t)Backlight_AnimCallback,
         Backlight_GetValue(), target,
-        time, NULL, NULL);
+        time, 10, NULL, NULL);
 }
