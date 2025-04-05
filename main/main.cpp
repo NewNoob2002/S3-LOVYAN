@@ -21,21 +21,28 @@ void lv_example_anim_2(void)
 {
 
     /* Set screen style */
-    lv_obj_t *scr = lv_scr_act();
-    lv_obj_remove_style_all(scr);
-    lv_obj_set_style_bg_opa(lv_scr_act(), LV_OPA_COVER, 0);
-    lv_obj_set_style_bg_color(lv_scr_act(), lv_color_black(), 0);
-    lv_obj_clear_flag(scr, LV_OBJ_FLAG_SCROLLABLE);
-    lv_disp_set_bg_color(lv_disp_get_default(), lv_color_black());
+    lv_obj_t * obj = lv_obj_create(lv_scr_act());
+    lv_obj_set_style_bg_color(obj, lv_palette_main(LV_PALETTE_RED), 0);
+    lv_obj_set_style_radius(obj, LV_RADIUS_CIRCLE, 0);
 
-    // /* Set root default style */
-    // static lv_style_t rootStyle;
-    // lv_style_init(&rootStyle);
-    // lv_style_set_width(&rootStyle, LV_HOR_RES);
-    // lv_style_set_height(&rootStyle, LV_VER_RES);
-    // lv_style_set_bg_opa(&rootStyle, LV_OPA_COVER);
-    // lv_style_set_bg_color(&rootStyle, lv_color_black());
-    // manager.SetRootDefaultStyle(&rootStyle);
+    lv_obj_align(obj, LV_ALIGN_LEFT_MID, 10, 0);
+
+    lv_anim_t a;
+    lv_anim_init(&a);
+    lv_anim_set_var(&a, obj);
+    lv_anim_set_values(&a, 10, 50);
+    lv_anim_set_time(&a, 1000);
+    lv_anim_set_playback_delay(&a, 100);
+    lv_anim_set_playback_time(&a, 300);
+    lv_anim_set_repeat_delay(&a, 500);
+    lv_anim_set_repeat_count(&a, LV_ANIM_REPEAT_INFINITE);
+    lv_anim_set_path_cb(&a, lv_anim_path_ease_in_out);
+
+    lv_anim_set_exec_cb(&a, anim_size_cb);
+    lv_anim_start(&a);
+    lv_anim_set_exec_cb(&a, anim_x_cb);
+    lv_anim_set_values(&a, 10, 240);
+    lv_anim_start(&a);
 }
 
 extern "C" void app_main(void)

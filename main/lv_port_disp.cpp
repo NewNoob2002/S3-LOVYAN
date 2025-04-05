@@ -11,8 +11,8 @@ static lv_color_t buf[DISP_BUF_SIZE];
 static lv_color_t buf2[DISP_BUF_SIZE];
 
 static lv_disp_t *disp;
-static lv_theme_t *theme_current;
-static lv_color_t bg_theme_color;
+// static lv_theme_t *theme_current;
+// static lv_color_t bg_theme_color;
 
 /* Creates a semaphore to handle concurrent call to lvgl stuff
  * If you wish to call *any* lvgl function from other threads/tasks
@@ -94,14 +94,14 @@ esp_err_t lv_display_init()
     ESP_ERROR_CHECK(esp_timer_create(&lv_periodic_timer_args, &lv_periodic_timer));
     ESP_ERROR_CHECK(esp_timer_start_periodic(lv_periodic_timer, LV_TICK_PERIOD_MS * 1000));
 
-    // Setup theme
-    theme_current = lv_theme_default_init(disp, lv_palette_main(LV_PALETTE_BLUE),
-                                          lv_palette_main(LV_PALETTE_RED),
-                                          LV_USE_THEME_DEFAULT, /*Light or dark mode*/
-                                          &lv_font_montserrat_14);
+    // // Setup theme
+    // theme_current = lv_theme_default_init(disp, lv_palette_main(LV_PALETTE_BLUE),
+    //                                       lv_palette_main(LV_PALETTE_RED),
+    //                                       LV_USE_THEME_DEFAULT, /*Light or dark mode*/
+    //                                       &lv_font_montserrat_14);
 
-    // lv_disp_set_theme(disp, th); /*Assign the theme to the display*/
-    bg_theme_color = theme_current->flags & LV_USE_THEME_DEFAULT ? lv_palette_darken(LV_PALETTE_GREY, 4) : lv_palette_lighten(LV_PALETTE_GREY, 1);
+    // // lv_disp_set_theme(disp, th); /*Assign the theme to the display*/
+    // bg_theme_color = theme_current->flags & LV_USE_THEME_DEFAULT ? lv_palette_darken(LV_PALETTE_GREY, 4) : lv_palette_lighten(LV_PALETTE_GREY, 1);
 
     xGuiSemaphore = xSemaphoreCreateMutex();
     if (!xGuiSemaphore)  
